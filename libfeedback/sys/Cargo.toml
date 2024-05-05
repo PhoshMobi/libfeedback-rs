@@ -1,0 +1,50 @@
+[package]
+name = "libfeedback-sys"
+version = "0.0.1"
+edition = "2021"
+build = "build.rs"
+authors = ["Guido Günther <agx@sigxcpu.org>"]
+categories = ["api-bindings", "gui"]
+keywords = ["gnome", "phosh", "feedbackd"]
+description = "FFI bindings for libfeedback"
+license = "MIT"
+
+[package.metadata.system-deps.libfeedback_0_0]
+name = "libfeedback-0.0"
+version = "0"
+
+[package.metadata.docs.rs]
+rustc-args = ["--cfg", "docsrs"]
+rustdoc-args = ["--cfg", "docsrs", "--generate-link-to-definition"]
+all-features = true
+
+[lib]
+name = "lfb_sys"
+
+[dependencies]
+libc = "0.2"
+
+[dependencies.glib-sys]
+git = "https://github.com/gtk-rs/gtk-rs-core"
+branch = "master"
+version = "0.20"
+
+[dependencies.gobject-sys]
+git = "https://github.com/gtk-rs/gtk-rs-core"
+branch = "master"
+version = "0.20"
+
+[dependencies.gio-sys]
+git = "https://github.com/gtk-rs/gtk-rs-core"
+branch = "master"
+version = "0.20"
+
+[build-dependencies]
+system-deps = "6"
+
+[dev-dependencies]
+shell-words = "1.0.0"
+tempfile = "3"
+
+[features]
+v0_3 = []

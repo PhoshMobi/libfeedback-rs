@@ -1,0 +1,75 @@
+stages:
+ - build
+ - test+docs
+ - deploy
+
+image: debian:trixie
+
+workflow:
+  rules:
+    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
+    # Don't trigger a branch pipeline if there is an open MR
+    - if: $CI_COMMIT_BRANCH && $CI_OPEN_MERGE_REQUESTS
+      when: never
+    - if: $CI_COMMIT_TAG
+    - if: $CI_COMMIT_BRANCH
+
+variables:
+  DEPS: |
+    git build-essential ca-certificates meson curl rustup
+
+.common_before_script: &common_before_script
+  before_script:
+    - apt update
+    - apt install -y --no-install-recommends $DEPS
+    - rustup default stable
+    - git submodule update --checkout
+    # Build libfeedback
+    - meson subprojects download
+    - cd subprojects/libfeedback && apt -y --no-install-recommends build-dep . && cd -
+    - meson setup _build
+    - meson compile -C _build
+    - meson install -C _build
+
+build:
+  stage: build
+  <<: *common_before_script
+  script:
+    - cargo build --all-features --examples
+    - cargo test
+
+build-doc:
+  stage: test+docs
+  needs: []
+  variables:
+    GIT_SUBMODULE_STRATEGY: recursive
+    RUSTFLAGS: --cfg docsrs
+  <<: *common_before_script
+  script:
+    # generate the docs
+    - rustup default nightly
+    - export PATH=$HOME/.cargo/bin:$PATH
+    - curl --proto '=https' --tlsv1.2 -sSf -o gir-rustdoc.py
+      https://gitlab.gnome.org/World/Rust/gir-rustdoc/-/raw/main/gir-rustdoc.py
+    - chmod +x gir-rustdoc.py
+    - cargo install rustdoc-stripper
+    - ./generator.py --embed-docs
+    - eval $(./gir-rustdoc.py --branch=$CI_COMMIT_BRANCH pre-docs)
+    - cargo doc --all-features --no-deps
+    - ./gir-rustdoc.py html-index
+    - mv target/doc/ docs
+  artifacts:
+    paths:
+      - docs
+
+pages:
+  stage: deploy
+  needs: [ build-doc ]
+  script:
+    - mkdir -p public/git
+    - mv docs public/git/docs
+  artifacts:
+    paths:
+      - public
+  rules:
+    - if: $CI_DEFAULT_BRANCH == $CI_COMMIT_BRANCH

@@ -1,0 +1,43 @@
+[external_libraries]
+Gio = {min_version = "2.66"}
+[options]
+girs_directories = ["../gir-files", "../"]
+library = "Lfb"
+version = "0.0"
+min_cfg_version = "1"
+target_path = "."
+use_gi_docgen = true
+work_mode = "normal"
+generate_safety_asserts = true
+deprecate_by_min_version = true
+# with this option enabled, versions for gir and gir-files saved only to one file to minimize noise
+single_version_file = true
+generate_builder = true
+trust_return_value_nullability = true
+
+external_libraries = [
+  "GLib",
+  "GObject",
+  "Gio",
+]
+
+generate = [
+  "Lfb.Event",
+  "Lfb.EventEndReason",
+  "Lfb.EventState",
+  "Lfb.*",
+]
+
+manual = [
+  "GLib.Error",
+  "Gio.AsyncReadyCallback",
+  "Gio.AsyncResult",
+  "Gio.Cancellable",
+]
+
+ignore = [
+  "Lfb.GdbusFeedback",
+  "Lfb.GdbusFeedbackProxy",
+  "Lfb.GdbusFeedbackSkeleton",
+  "Lfb.get_proxy",
+]

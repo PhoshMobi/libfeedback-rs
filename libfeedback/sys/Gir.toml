@@ -1,0 +1,19 @@
+[options]
+work_mode = "sys"
+library = "Lfb"
+version = "0.0"
+girs_directories = ["../../gir-files", "../../"]
+min_cfg_version = "1"
+external_libraries = [
+   "GLib",
+   "GObject",
+   "Gio",
+]
+
+ignore = [
+  "Lfb.GdbusFeedback",
+  "Lfb.GdbusFeedbackProxy",
+  "Lfb.GdbusFeedbackSkeleton",
+  "Lfb.GdbusFeedbackIface",
+]
+

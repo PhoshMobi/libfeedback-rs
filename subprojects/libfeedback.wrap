@@ -1,0 +1,5 @@
+[wrap-git]
+directory=libfeedback
+url=https://source.puri.sm/Librem5/feedbackd.git
+revision=v0.3.0
+
