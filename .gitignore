@@ -3,3 +3,4 @@ Cargo.lock
 subprojects/libfeedback/
 _build/
 builddir/
+public/

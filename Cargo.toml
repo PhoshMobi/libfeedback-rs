@@ -1,7 +1,19 @@
 [workspace]
 resolver = "2"
 members = [
-    "libfeedback",
     "libfeedback/sys",
+    "libfeedback",
 ]
 exclude = ["gir"]
+
+[workspace.package]
+homepage = "https://gitlab.gnome.org/guidog/libfeedback-rs"
+authors = ["The Phosh Developers"]
+version = "0.0.1"
+repository = "https://gitlab.gnome.org/guidog/libfeedback-rs.git"
+license = "MIT"
+exclude = [
+    "gir-files/*",
+]
+edition = "2021"
+rust-version = "1.70"
