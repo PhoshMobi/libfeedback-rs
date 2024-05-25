@@ -25,19 +25,13 @@ name = "lfb_sys"
 libc = "0.2"
 
 [dependencies.glib-sys]
-git = "https://github.com/gtk-rs/gtk-rs-core"
-branch = "master"
-version = "0.20"
+version = "0.19"
 
 [dependencies.gobject-sys]
-git = "https://github.com/gtk-rs/gtk-rs-core"
-branch = "master"
-version = "0.20"
+version = "0.19"
 
 [dependencies.gio-sys]
-git = "https://github.com/gtk-rs/gtk-rs-core"
-branch = "master"
-version = "0.20"
+version = "0.19"
 
 [build-dependencies]
 system-deps = "6"
