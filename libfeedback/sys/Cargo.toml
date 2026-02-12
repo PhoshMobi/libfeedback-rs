@@ -26,17 +26,17 @@ libc = "0.2"
 
 [dependencies.glib-sys]
 git = "https://github.com/gtk-rs/gtk-rs-core"
-branch = "master"
+branch = "main"
 version = "0.20"
 
 [dependencies.gobject-sys]
 git = "https://github.com/gtk-rs/gtk-rs-core"
-branch = "master"
+branch = "main"
 version = "0.20"
 
 [dependencies.gio-sys]
 git = "https://github.com/gtk-rs/gtk-rs-core"
-branch = "master"
+branch = "main"
 version = "0.20"
 
 [build-dependencies]
