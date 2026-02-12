@@ -16,7 +16,7 @@ workflow:
 
 variables:
   DEPS: |
-    git build-essential ca-certificates meson curl rustup
+    git build-essential ca-certificates meson curl rustup python3-requests
 
 .common_before_script: &common_before_script
   before_script:
@@ -43,7 +43,6 @@ build-doc:
   needs: []
   variables:
     GIT_SUBMODULE_STRATEGY: recursive
-    RUSTFLAGS: --cfg docsrs
   <<: *common_before_script
   script:
     # generate the docs
