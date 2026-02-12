@@ -4,11 +4,11 @@ version = "0.0.1"
 authors = ["Guido Günther <agx@sigxcpu.org>"]
 edition = "2021"
 readme = "../README.md"
-homepage = "https://guidog.pages.gitlab.gnome.org/libfeedback-rs/"
+homepage = "https://guidog.pages.gitlab.gnome.org/libfeedback-rs/git/docs/"
 description = "Rust bindings for libfeedback"
 license = "MIT"
-repository = "https://guidog.pages.gitlab.gnome.org/libfeedback-rs/"
-documentation = "https://guidog.pages.gitlab.gnome.org/libfeedback-rs/stable/latest/docs/libfeedbac"
+repository = "https://gitlab.gnome.org/guidog/libfeedback-rs/"
+documentation = "https://guidog.pages.gitlab.gnome.org/libfeedback-rs/git/docs/"
 categories = ["api-bindings"]
 keywords = ["gnome", "phosh", "feedbackd"]
 
