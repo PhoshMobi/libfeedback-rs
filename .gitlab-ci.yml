@@ -43,7 +43,6 @@ build-doc:
   needs: []
   variables:
     GIT_SUBMODULE_STRATEGY: recursive
-    RUSTFLAGS: --cfg docsrs
   <<: *common_before_script
   script:
     # generate the docs
